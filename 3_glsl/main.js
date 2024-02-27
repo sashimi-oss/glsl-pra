@@ -26,7 +26,7 @@ let fs = `
     //uv = (uv - 1.0) * 2.0;
 
     float d = length(uv);
-    d -= 0.5;
+    d = sin(d*8.)/8.;
     d = abs(d);
     d = smoothstep(0.0, 0.1, d);
 
