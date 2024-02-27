@@ -22,11 +22,15 @@ let fs = `
     vec3 color;
 
     vec2 uv = gl_FragCoord.xy / resolution - 1.0;
+    uv.x *= resolution.x/resolution.y;
     //uv = (uv - 1.0) * 2.0;
 
     float d = length(uv);
+    d -= 0.5;
+    d = abs(d);
+    d = smoothstep(0.0, 0.1, d);
 
-    color = vec3(d, 0.0, 0.0);
+    color = vec3(d, d, d);
 
     gl_FragColor = vec4(color, 1.0);
 }
