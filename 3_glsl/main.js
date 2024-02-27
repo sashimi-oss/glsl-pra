@@ -21,11 +21,12 @@ let fs = `
   void main() {
     vec3 color;
 
-    vec2 c = gl_FragCoord.xy / resolution;
-    c = c * 1.0 - 1.0;
-    color += vec3(pow(1.0 - abs(c.y), 16.0) * 2.0);
-    //color += vec3(1.0, 1.0, 1.0);
-    color *= vec3(0.2, 0.5, 0.9) ;
+    vec2 uv = gl_FragCoord.xy / resolution - 1.0;
+    //uv = (uv - 1.0) * 2.0;
+
+    float d = length(uv);
+
+    color = vec3(d, 0.0, 0.0);
 
     gl_FragColor = vec4(color, 1.0);
 }
