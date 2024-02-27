@@ -26,11 +26,12 @@ let fs = `
     //uv = (uv - 1.0) * 2.0;
 
     float d = length(uv);
-    d = sin(d*8.)/8.;
+    d = sin(d*8. + time )/8.;
     d = abs(d);
     d = smoothstep(0.0, 0.1, d);
 
     color = vec3(d, d, d);
+    // colorDebug = vec3(time, 0.0, 0.0);
 
     gl_FragColor = vec4(color, 1.0);
 }
@@ -47,8 +48,12 @@ function setup() {
 
   shader(theShader);
    theShader.setUniform('resolution', [width, height]);
-   theShader.setUniform("time", millis() / 1000.0);
-  //  theShader.setUniform("mouse", [mouseX, map(mouseY, 0, height, height, 0)]);
-  quad(-1, -1, -1, 1, 1, 1, 1, -1);
-  resetShader();
+   theShader.setUniform('time', millis() / 1000.0);
+   //  theShader.setUniform("mouse", [mouseX, map(mouseY, 0, height, height, 0)]);
+   quad(-1, -1, -1, 1, 1, 1, 1, -1);
+   resetShader();
+  }
+  function draw(){
+    // console.log(millis()/1000.0);
+    
 }
