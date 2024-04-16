@@ -46,14 +46,20 @@ function setup() {
    theShader = createShader(vs, fs);
    noStroke();
 
-  shader(theShader);
-   theShader.setUniform('resolution', [width, height]);
-   theShader.setUniform('time', millis() / 1000.0);
-   //  theShader.setUniform("mouse", [mouseX, map(mouseY, 0, height, height, 0)]);
-   quad(-1, -1, -1, 1, 1, 1, 1, -1);
-   resetShader();
+  // shader(theShader);
+  //theShader.setUniform('time', millis() / 1000.0);
+  //  theShader.setUniform("mouse", [mouseX, map(mouseY, 0, height, height, 0)]);
+  //  resetShader();
   }
   function draw(){
     // console.log(millis()/1000.0);
+    let t = frameCount / 30;
+    shader(theShader);
+    theShader.setUniform('resolution', [width, height]);
+    theShader.setUniform('time', t);
+    quad(-1, -1, -1, 1, 1, 1, 1, -1);
+    resetShader();
+
+
     
 }

@@ -17,17 +17,21 @@ let fs = `
   uniform float time;
 
   const float freq = 20.0;
+  const float PI  = 3.14;
+  const float PI2 = PI* 2.;
 
   void main() {
     vec3 color;
 
     vec2 c = gl_FragCoord.xy / resolution;
     c = c * 1.0 - 1.0;
-    color += vec3(pow(1.0 - abs(c.y), 16.0) * 2.0);
+    float l=length(vec2(0,c.y+sin(c.x*PI)));
+    //color += vec3(pow(1.0 - abs(c.y), 16.0) * 2.0);
     //color += vec3(1.0, 1.0, 1.0);
-    color *= vec3(0.2, 0.5, 0.9) ;
+    //color *= vec3(0.2, 0.5, 0.9);
 
-    gl_FragColor = vec4(color, 1.0);
+    //gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(vec3(l), 1.0);
 }
 `;
 
